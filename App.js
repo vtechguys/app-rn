@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import AppNavigator from './navigation/AppNavigator';
+import AppNavigator from './navigation';
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
@@ -27,13 +27,35 @@ export default function App(props) {
     );
   }
 }
+const images = [
+  // require('./assets/icons/back.png'),
+  // require('./assets/icons/plants.png'),
+  // require('./assets/icons/seeds.png'),
+  // require('./assets/icons/flowers.png'),
+  // require('./assets/icons/sprayers.png'),
+  // require('./assets/icons/pots.png'),
+  // require('./assets/icons/fertilizers.png'),
+  // require('./assets/images/plants_1.png'),
+  // require('./assets/images/plants_2.png'),
+  // require('./assets/images/plants_3.png'),
+  // require('./assets/images/explore_1.png'),
+  // require('./assets/images/explore_2.png'),
+  // require('./assets/images/explore_3.png'),
+  // require('./assets/images/explore_4.png'),
+  // require('./assets/images/explore_5.png'),
+  // require('./assets/images/explore_6.png'),
+  require('./assets/images/illustration_1.png'),
+  require('./assets/images/illustration_2.png'),
+  require('./assets/images/illustration_3.png'),
+  // require('./assets/images/avatar.png'),
 
+  require('./assets/images/robot-dev.png'),
+  require('./assets/images/robot-prod.png'),
+  require('./assets/icon.png')
+];
 async function loadResourcesAsync() {
   await Promise.all([
-    Asset.loadAsync([
-      require('./assets/images/robot-dev.png'),
-      require('./assets/images/robot-prod.png'),
-    ]),
+    Asset.loadAsync(images),
     Font.loadAsync({
       // This is the font that we are using for our tab bar
       ...Ionicons.font,
@@ -44,7 +66,7 @@ async function loadResourcesAsync() {
   ]);
 }
 
-function handleLoadingError(error: Error) {
+function handleLoadingError(error) {
   // In this case, you might want to report the error to your error reporting
   // service, for example Sentry
   console.warn(error);

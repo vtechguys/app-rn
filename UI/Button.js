@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
-import { LinearGradient } from 'expo';
+import { LinearGradient } from 'expo-linear-gradient';
 import { theme } from '../constants';
 
 function Button(props) {
@@ -87,14 +87,34 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 10,
     },
-    accent: { backgroundColor: theme.colors.accent, },
-    primary: { backgroundColor: theme.colors.primary, },
-    secondary: { backgroundColor: theme.colors.secondary, },
-    tertiary: { backgroundColor: theme.colors.tertiary, },
-    black: { backgroundColor: theme.colors.black, },
-    white: { backgroundColor: theme.colors.white, },
-    gray: { backgroundColor: theme.colors.gray, },
-    gray2: { backgroundColor: theme.colors.gray2, },
-    gray3: { backgroundColor: theme.colors.gray3, },
-    gray4: { backgroundColor: theme.colors.gray4, },
+    accent: {
+        backgroundColor: theme.colors.accent,
+    },
+    primary: {
+        backgroundColor: theme.colors.primary,
+    },
+    secondary: {
+        backgroundColor: theme.colors.secondary,
+    },
+    tertiary: {
+        backgroundColor: theme.colors.tertiary,
+    },
+    black: {
+        backgroundColor: theme.colors.black,
+    },
+    white: {
+        backgroundColor: theme.colors.white,
+    },
+    gray: {
+        backgroundColor: theme.colors.gray,
+    },
+    gray2: {
+        backgroundColor: theme.colors.gray2,
+    },
+    gray3: {
+        backgroundColor: theme.colors.gray3,
+    },
+    gray4: {
+        backgroundColor: theme.colors.gray4,
+    },
 });

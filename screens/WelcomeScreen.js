@@ -3,20 +3,22 @@ import { Animated, Dimensions, Image, FlatList, Modal, StyleSheet, ScrollView } 
 
 import { Button, Block, Text } from "../UI";
 
-import { theme } from "../constants";
+import { theme, appConstants } from "../constants";
 
 
 const { width, height } = Dimensions.get("window");
 
-
+function handleError(e){
+    console.error(e);
+}
 
 class Welcome extends Component {
 
     constructor(props) {
         super(props);
-        scrollX = new Animated.Value(0);
-        state = {
-            showTerms: false
+        this.scrollX = new Animated.Value(0);
+        this.state = {
+            showTerms: false,
         };
     }
     renderTermsService() {
@@ -125,10 +127,10 @@ class Welcome extends Component {
             </Block>
         )
     }
-
+    
     render() {
         const { navigation } = this.props;
-
+        
         return (
             <Block>
                 <Block center bottom flex={0.4}>
@@ -151,7 +153,7 @@ class Welcome extends Component {
                     }
                 </Block>
                 <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
-                    <Button gradient onPress={() => navigation.navigate('Login')}>
+                    <Button gradient onPress={() => navigation.navigate('SignIn')}>
                         <Text center semibold white>Login</Text>
                     </Button>
                     <Button shadow onPress={() => navigation.navigate('SignUp')}>

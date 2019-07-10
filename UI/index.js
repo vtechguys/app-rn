@@ -1,11 +1,14 @@
 import Block from "./Block";
-import Text from "./Text";
-
+import { TypeBox as Text }  from "./Text";
+import Button from "./Button";
+import Input from "./Input";
 
 
 
 
 export {
     Block,
-    Text
+    Text, 
+    Button,
+    Input
 };

@@ -3,7 +3,7 @@ import { Text, StyleSheet } from "react-native";
 
 import { theme } from "../constants";
 
-function TypeBox(props) {
+export function TypeBox(props) {
     const {
         h1,
         h2,
@@ -39,9 +39,9 @@ function TypeBox(props) {
         style,
         children,
         ...extraProps
-      } = props;
-  
-      const textStyles = [
+    } = props;
+
+    const textStyles = [
         styles.text,
         h1 && styles.h1,
         h2 && styles.h2,
@@ -75,18 +75,17 @@ function TypeBox(props) {
         gray && styles.gray,
         gray2 && styles.gray2,
         style // rewrite predefined styles external styles
-      ];
-      
-      let textJSX = (
-        <Text style = { textStyles} { ...extaProps }>
-          { children }
-        </Text>
-      );
+    ];
 
-      return textJSX;
+    let textJSX = (
+        <Text style={textStyles} {...extraProps}>
+            {children}
+        </Text>
+    );
+
+    return textJSX;
 }
 
-export default TextBox;
 const styles = StyleSheet.create({
     // default style
     text: {
