@@ -1,0 +1,6 @@
+/*
+    
+    Mocks file is used to present mock data in our app.
+    There are mocks for each screen.
+
+*/
