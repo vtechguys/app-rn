@@ -15,7 +15,7 @@ import { MonoText } from '../components/StyledText';
 
 export default function HomeScreen(props) {
   return <View>
-    <Button title="insideScreen"onPress={()=>props.navigation.navigate("InnerScreen")}></Button>
+    <Button title="insideScreen" onPress={()=>props.navigation.navigate("InnerScreen")}></Button>
   </View>
   // return (
   //   <View style={styles.container}>

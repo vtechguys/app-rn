@@ -65,7 +65,7 @@ const configHome = {
 const HomeStack = createStackNavigator(
   {
     Home: configHome,
-    InsideScreen: InsideScreen
+    InnerScreen: InsideScreen
   },
   config
 );
