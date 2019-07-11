@@ -3,7 +3,7 @@ import { Text, StyleSheet } from "react-native";
 
 import { theme } from "../constants";
 
-export function TypeBox(props) {
+export default function TypeBox(props) {
     const {
         h1,
         h2,

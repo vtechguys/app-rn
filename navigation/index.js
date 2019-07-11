@@ -2,9 +2,9 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import Init from '../screens/InitScreen';
 import Welcome from '../screens/WelcomeScreen';
-// import SignIn from '../screens/SignInScreen';
-// import SignUp from '../screens/SignUpScreen';
-// import Forgot from '../screens/ForgotScreen';
+import SignIn from '../screens/SignInScreen';
+import SignUp from '../screens/SignUpScreen';
+import Forgot from '../screens/ForgotPasswordScreen';
 
 
 import MainTabNavigator from "./MainTabNavigator";
@@ -13,9 +13,9 @@ const screens = createSwitchNavigator({
 
     Init,
     Welcome,
-    // SignIn,
-    // SignUp,
-    // Forgot,
+    SignIn,
+    SignUp,
+    Forgot,
     Main: MainTabNavigator
 }, {
         defaultNavigationOptions: {

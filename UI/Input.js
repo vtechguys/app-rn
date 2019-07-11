@@ -17,12 +17,18 @@ class Input extends Component {
     }
     renderLabel() {
         const { label, error } = this.props;
-
-        return (
-            <Block flex={false}>
-                {label ? <Text gray2={!error} accent={error}>{label}</Text> : null}
-            </Block>
-        )
+        return <Text gray2={!error} accent={error}>{label}</Text> ;
+        // return (
+        //     <Block flex={false}>
+        //         {   
+        //             label 
+        //             ? 
+        //                 <Text gray2={!error} accent={error}>{ label }</Text> 
+        //             : 
+        //                 null
+        //         }
+        //     </Block>
+        // )
     }
     renderToggle() {
         const { secure, rightLabel } = this.props;
@@ -85,7 +91,7 @@ class Input extends Component {
             ? 'email-address' : number
                 ? 'numeric' : phone
                     ? 'phone-pad' : 'default';
-        let inputJSX = (
+        return (
             <Block flex={false} margin={[theme.sizes.base, 0]}>
                 {this.renderLabel()}
                 <TextInput
@@ -101,7 +107,6 @@ class Input extends Component {
                 {this.renderRight()}
             </Block>
         );
-        return inputJSX;
     }
 
 }

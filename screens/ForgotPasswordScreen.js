@@ -4,40 +4,49 @@ import { Alert, ActivityIndicator, Keyboard, KeyboardAvoidingView, StyleSheet } 
 import { Button, Block, Input, Text } from '../UI';
 import { theme } from '../constants';
 
-export default class SignUpScreen extends Component {
+const VALID_EMAIL = "aniketjha898@gmail.com";
+
+export default class Forgot extends Component {
   state = {
-    email: null,
-    username: null,
-    password: null,
+    email: VALID_EMAIL,
     errors: [],
     loading: false,
   }
 
-  handleSignUp() {
+  handleForgot() {
     const { navigation } = this.props;
-    const { email, username, password } = this.state;
+    const { email } = this.state;
     const errors = [];
 
     Keyboard.dismiss();
     this.setState({ loading: true });
 
     // check with backend API or with some static data
-    if (!email) errors.push('email');
-    if (!username) errors.push('username');
-    if (!password) errors.push('password');
+    if (email !== VALID_EMAIL) {
+      errors.push('email');
+    }
 
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
       Alert.alert(
-        'Success!',
-        'Your account has been created',
+        'Password sent!',
+        'Please check you email.',
         [
           {
-            text: 'Continue', onPress: () => {
-              navigation.navigate('Browse')
+            text: 'OK', onPress: () => {
+              navigation.navigate('Login')
             }
           }
+        ],
+        { cancelable: false }
+      )
+    } else {
+      Alert.alert(
+        'Error',
+        'Please check you Email address.',
+        [
+          { text: 'Try again', }
         ],
         { cancelable: false }
       )
@@ -50,37 +59,21 @@ export default class SignUpScreen extends Component {
     const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
 
     return (
-      <KeyboardAvoidingView style={styles.signup} behavior="padding">
-        <Block padding={[0, theme.sizes.base * 2]} margin={[theme.sizes.base * 2, 0]}>
-          <Text h1 bold>Sign Up</Text>
+      <KeyboardAvoidingView style={styles.forgot} behavior="padding">
+        <Block padding={[0, theme.sizes.base * 2]}>
+          <Text h1 bold>Forgot</Text>
           <Block middle>
             <Input
-              email
               label="Email"
               error={hasErrors('email')}
               style={[styles.input, hasErrors('email')]}
               defaultValue={this.state.email}
               onChangeText={text => this.setState({ email: text })}
             />
-            <Input
-              label="Username"
-              error={hasErrors('username')}
-              style={[styles.input, hasErrors('username')]}
-              defaultValue={this.state.username}
-              onChangeText={text => this.setState({ username: text })}
-            />
-            <Input
-              secure
-              label="Password"
-              error={hasErrors('password')}
-              style={[styles.input, hasErrors('password')]}
-              defaultValue={this.state.password}
-              onChangeText={text => this.setState({ password: text })}
-            />
-            <Button gradient onPress={() => this.handleSignUp()}>
+            <Button gradient onPress={() => this.handleForgot()}>
               {loading ?
                 <ActivityIndicator size="small" color="white" /> :
-                <Text bold white center>Sign Up</Text>
+                <Text bold white center>Forgot</Text>
               }
             </Button>
 
@@ -89,6 +82,12 @@ export default class SignUpScreen extends Component {
                 Back to Login
               </Text>
             </Button>
+            <Button onPress={() => navigation.navigate('SignUp')}>
+              <Text gray caption center style={{ textDecorationLine: 'underline' }}>
+                SignUp Instead
+              </Text>
+            </Button>
+            
           </Block>
         </Block>
       </KeyboardAvoidingView>
@@ -97,7 +96,7 @@ export default class SignUpScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  signup: {
+  forgot: {
     flex: 1,
     justifyContent: 'center',
   },
