@@ -4,7 +4,7 @@ import Button from "./Button";
 import Input from "./Input";
 import GoogleSignInButton from "./GoogleSignInButton";
 import Divider from "./Divider";
-
+import Switch from "./Switch";
 
 
 export {
@@ -13,5 +13,6 @@ export {
     Button,
     Input,
     GoogleSignInButton,
-    Divider
+    Divider,
+    Switch
 };

@@ -163,7 +163,7 @@ export default class SignInScreen extends Component {
     this.setState({ errors, loading: false });
 
     if (!errors.length) {
-      navigation.navigate("HomeStack");
+      navigation.navigate("Dashboard");
     }
   }
 
