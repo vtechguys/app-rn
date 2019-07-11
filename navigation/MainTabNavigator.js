@@ -27,13 +27,15 @@ const configHome = {
           style={{ paddingLeft: theme.sizes.base }}
           onPress={() => navigation.openDrawer()}
           name="md-contact"
-          size={ theme.sizes.base * 2.5 }
+          size={theme.sizes.base * 2.5}
         />
-        
+
       ),
       headerTitle: "Home",
       showIcon: true,
-
+      tabBarOptions: {
+        showIcon: true
+      },
       tabBarLabel: 'Home',
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
@@ -61,26 +63,27 @@ const HomeStack = createStackNavigator(
   config
 );
 HomeScreen.navigationOptions = {
-      ...HomeScreen.navigationOptions,
-      tabBarLabel: 'Home',
-      showIcon: true,
-
-      tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-          focused={focused}
-          name={
-            Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle'
-          }
-        />
-        // <Icon.Ionicons
-        //   style={{ paddingLeft: theme.sizes.padding }}
-        //   onPress={() => navigation.openDrawer()}
-        //   name="md-contact"
-        //   size={ theme.sizes.base  }
-        // />
-      ),
+  // ...HomeScreen.navigationOptions,
+  tabBarLabel: 'Home',
+  showIcon: true,
+  tabBarOptions: {
+    showIcon: true
+  },  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+    // <Icon.Ionicons
+    //   style={{ paddingLeft: theme.sizes.padding }}
+    //   onPress={() => navigation.openDrawer()}
+    //   name="md-contact"
+    //   size={ theme.sizes.base  }
+    // />
+  ),
 };
 const configLinks = {
   screen: LinksScreen,
@@ -91,13 +94,17 @@ const configLinks = {
           style={{ paddingLeft: theme.sizes.base }}
           onPress={() => navigation.openDrawer()}
           name="md-contact"
-          size={ theme.sizes.base * 2.5 }
+          size={theme.sizes.base * 2.5}
         />
-        
+
       ),
       headerTitle: "Links",
       tabBarLabel: 'Links',
       showIcon: true,
+      tabBarOptions: {
+        showIcon: true
+      },
+      tabBarLabel: "Links",
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
           focused={focused}
@@ -121,18 +128,20 @@ const LinksStack = createStackNavigator(
 LinksScreen.navigationOptions = {
   ...LinksScreen.navigationOptions,
   showIcon: true,
-
+  tabBarOptions: {
+    showIcon: true
+  },
   tabBarLabel: 'Links',
-      tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-          focused={focused}
-          name={
-            Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle'
-          }
-        />
-      ),
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
 };
 
 
@@ -158,9 +167,9 @@ const configSettings = {
           style={{ paddingLeft: theme.sizes.base }}
           onPress={() => navigation.openDrawer()}
           name="md-contact"
-          size={ theme.sizes.base * 2.5 }
+          size={theme.sizes.base * 2.5}
         />
-        
+
       ),
       headerTitle: "Links",
       tabBarLabel: 'Links',
@@ -168,6 +177,7 @@ const configSettings = {
         showIcon: true,
 
       },
+
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
           focused={focused}
@@ -189,16 +199,19 @@ const SettingsStack = createStackNavigator(
 );
 SettingsScreen.navigationOptions = {
   tabBarLabel: 'Links',
-      tabBarIcon: ({ focused }) => (
-        <TabBarIcon
-          focused={focused}
-          name={
-            Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle'
-          }
-        />
-      ),
+  tabBarOptions: {
+    showIcon: true
+  },
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-information-circle${focused ? '' : '-outline'}`
+          : 'md-information-circle'
+      }
+    />
+  ),
 };
 
 
@@ -219,17 +232,17 @@ const tabNavigator = createBottomTabNavigator({
   LinksStack,
   SettingsStack,
 }, {
-  tabBarOptions: {
-    showIcon: true,
+    tabBarOptions: {
+      showIcon: true,
 
-  },
-  navigationOptions: ({ navigation }) => {
-    const { routeName } = navigation.state.routes[navigation.state.index];
-    return {
-      header: null,
-      headerTitle: routeName
-    };
-  }
-});
+    },
+    navigationOptions: ({ navigation }) => {
+      const { routeName } = navigation.state.routes[navigation.state.index];
+      return {
+        header: null,
+        headerTitle: routeName
+      };
+    }
+  });
 
 export default tabNavigator;
