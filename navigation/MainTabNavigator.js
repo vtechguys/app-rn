@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
@@ -8,10 +8,16 @@ import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import * as Icon from "@expo/vector-icons";
 import { theme } from "../constants";
-// const config = Platform.select({
-//   web: { headerMode: 'screen' },
-//   default: {},
-// });
+
+// experiment
+
+const InsideScreen =(props) =>(<View>
+  <Text>OtherScreen</Text>
+</View>);
+
+// 
+
+
 
 const config = {
   defaultNavigationOptions: {
@@ -58,12 +64,14 @@ const configHome = {
 };
 const HomeStack = createStackNavigator(
   {
-    Home: configHome
+    Home: configHome,
+    InsideScreen: InsideScreen
   },
   config
 );
 HomeScreen.navigationOptions = {
   // ...HomeScreen.navigationOptions,
+  
   tabBarLabel: 'Home',
   showIcon: true,
   tabBarOptions: {
@@ -213,13 +221,6 @@ SettingsScreen.navigationOptions = {
     />
   ),
 };
-
-
-
-
-
-
-
 
 
 

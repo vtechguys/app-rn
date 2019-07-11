@@ -8,12 +8,15 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen() {
-  return <Text style={{fontSize: 48}}>Home</Text>
+export default function HomeScreen(props) {
+  return <View>
+    <Button title="insideScreen"onPress={()=>props.navigation.navigate("InnerScreen")}></Button>
+  </View>
   // return (
   //   <View style={styles.container}>
   //     <ScrollView
