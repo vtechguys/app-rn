@@ -154,7 +154,7 @@ class Welcome extends Component {
                 </Block>
                 <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
                     <Button gradient onPress={() => navigation.navigate('SignIn')}>
-                        <Text center semibold white>Login</Text>
+                        <Text center semibold white>SignIn</Text>
                     </Button>
                     <Button shadow onPress={() => navigation.navigate('SignUp')}>
                         <Text center semibold>Signup</Text>
