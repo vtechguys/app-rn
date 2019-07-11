@@ -32,34 +32,8 @@ const configHome = {
         
       ),
       headerTitle: "Home",
-      tabBarVisible: true
-      // tabBarLabel: 'Home',
-      // tabBarIcon: ({ focused }) => (
-      //   <TabBarIcon
-      //     focused={focused}
-      //     name={
-      //       Platform.OS === 'ios'
-      //         ? `ios-information-circle${focused ? '' : '-outline'}`
-      //         : 'md-information-circle'
-      //     }
-      //   />
-      //   // <Icon.Ionicons
-      //   //   style={{  }}
-      //   //   onPress={() => navigation.openDrawer()}
-      //   //   name="md-contact"
-      //   //   size={ theme.sizes.base  }
-      //   // />
-      // ),
-    };
-  }
-};
-const HomeStack = createStackNavigator(
-  {
-    Home: configHome
-  },
-  config
-);
-HomeScreen.navigationOptions = {
+      showIcon: true,
+
       tabBarLabel: 'Home',
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
@@ -72,6 +46,36 @@ HomeScreen.navigationOptions = {
         />
         // <Icon.Ionicons
         //   style={{  }}
+        //   onPress={() => navigation.openDrawer()}
+        //   name="md-contact"
+        //   size={ theme.sizes.base  }
+        // />
+      ),
+    };
+  }
+};
+const HomeStack = createStackNavigator(
+  {
+    Home: configHome
+  },
+  config
+);
+HomeScreen.navigationOptions = {
+      ...HomeScreen.navigationOptions,
+      tabBarLabel: 'Home',
+      showIcon: true,
+
+      tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+          focused={focused}
+          name={
+            Platform.OS === 'ios'
+              ? `ios-information-circle${focused ? '' : '-outline'}`
+              : 'md-information-circle'
+          }
+        />
+        // <Icon.Ionicons
+        //   style={{ paddingLeft: theme.sizes.padding }}
         //   onPress={() => navigation.openDrawer()}
         //   name="md-contact"
         //   size={ theme.sizes.base  }
@@ -92,7 +96,18 @@ const configLinks = {
         
       ),
       headerTitle: "Links",
-      
+      tabBarLabel: 'Links',
+      showIcon: true,
+      tabBarIcon: ({ focused }) => (
+        <TabBarIcon
+          focused={focused}
+          name={
+            Platform.OS === 'ios'
+              ? `ios-information-circle${focused ? '' : '-outline'}`
+              : 'md-information-circle'
+          }
+        />
+      ),
     };
   }
 };
@@ -105,6 +120,8 @@ const LinksStack = createStackNavigator(
 );
 LinksScreen.navigationOptions = {
   ...LinksScreen.navigationOptions,
+  showIcon: true,
+
   tabBarLabel: 'Links',
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
@@ -117,8 +134,23 @@ LinksScreen.navigationOptions = {
         />
       ),
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const configSettings = {
   screen: LinksScreen,
+
   navigationOptions: ({ navigation }) => {
     return {
       headerLeft: (
@@ -132,6 +164,10 @@ const configSettings = {
       ),
       headerTitle: "Links",
       tabBarLabel: 'Links',
+      tabBarOptions: {
+        showIcon: true,
+
+      },
       tabBarIcon: ({ focused }) => (
         <TabBarIcon
           focused={focused}
@@ -164,12 +200,29 @@ SettingsScreen.navigationOptions = {
         />
       ),
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
   LinksStack,
   SettingsStack,
 }, {
+  tabBarOptions: {
+    showIcon: true,
 
+  },
   navigationOptions: ({ navigation }) => {
     const { routeName } = navigation.state.routes[navigation.state.index];
     return {

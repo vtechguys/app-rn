@@ -69,7 +69,26 @@ export default function HomeScreen() {
   //   </View>
   // );
 }
+// HomeScreen.navigationOptions = {
 
+//   tabBarLabel: 'Home',
+//   tabBarIcon: ({ focused }) => (
+//     <TabBarIcon
+//       focused={focused}
+//       name={
+//         Platform.OS === 'ios'
+//           ? `ios-information-circle${focused ? '' : '-outline'}`
+//           : 'md-information-circle'
+//       }
+//     />
+//     // <Icon.Ionicons
+//     //   style={{  }}
+//     //   onPress={() => navigation.openDrawer()}
+//     //   name="md-contact"
+//     //   size={ theme.sizes.base  }
+//     // />
+//   ),
+// };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
