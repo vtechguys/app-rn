@@ -74,7 +74,7 @@ export default function TypeBox(props) {
         white && styles.white,
         gray && styles.gray,
         gray2 && styles.gray2,
-        style // rewrite predefined styles external styles
+        style //external styles
     ];
 
     let textJSX = (

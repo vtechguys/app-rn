@@ -159,7 +159,7 @@ function Block(props) {
         wrap && { flexWrap: 'wrap' },
         color && styles[color], // predefined styles colors for backgroundColor
         color && !styles[color] && { backgroundColor: color }, // custom backgroundColor
-        style, // rewrite predefined styles exyeranl styles
+        style, // external styles
     ];
 
     let blockJSX = (

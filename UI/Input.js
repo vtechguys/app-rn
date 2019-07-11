@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, TextInput } from "react-native";
-import { Icon } from "expo";
+import * as Icon from "@expo/vector-icons";
 
 import Text from "./Text";
 import Button from "./Button";
@@ -17,18 +17,18 @@ class Input extends Component {
     }
     renderLabel() {
         const { label, error } = this.props;
-        return <Text gray2={!error} accent={error}>{label}</Text> ;
-        // return (
-        //     <Block flex={false}>
-        //         {   
-        //             label 
-        //             ? 
-        //                 <Text gray2={!error} accent={error}>{ label }</Text> 
-        //             : 
-        //                 null
-        //         }
-        //     </Block>
-        // )
+        // return <Text gray2={!error} accent={error}>{label}</Text> ;
+        return (
+            <Block flex={false}>
+                {   
+                    label 
+                    ? 
+                        <Text gray2={!error} accent={error}>{ label }</Text> 
+                    : 
+                        null
+                }
+            </Block>
+        )
     }
     renderToggle() {
         const { secure, rightLabel } = this.props;

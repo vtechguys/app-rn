@@ -1,3 +1,8 @@
+/**
+ * Used from github https://github.com/EvanBacon/expo-google-sign-in-demo/
+ */
+
+
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
