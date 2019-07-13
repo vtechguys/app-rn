@@ -36,6 +36,7 @@
       "package": "com.bacon.expo.googlesignin",
       "googleServicesFile": "./services/google-services.json"
     },
-    "description": ""
+    "description": "v 0.0.1 only implements pedometer count steps",
+    "githubUrl": "https://github.com/vtechguys/react-navigation-v3-issue"
   }
 }
