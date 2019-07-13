@@ -62,7 +62,7 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount = async () => {
     this._subscribe();
-    const pastStepCount = await AsyncStorage.getItem("TOTAL_STEPS");
+    const pastStepCount =  + ( await AsyncStorage.getItem("TOTAL_STEPS") );
     if (pastStepCount > 0) {
       this.setState({
         pastStepCount,
@@ -132,7 +132,7 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
-    let { maxWidth,levelWidth, totalStepCount } = this.state;
+    let { maxWidth, totalStepCount } = this.state;
     let pedometerAvailableJSX = (
       <>
         {/* <Text primary body bold>Past Step {this.state.pastStepCount}</Text> */}
@@ -141,14 +141,14 @@ export default class HomeScreen extends React.Component {
              margin: theme.sizes.base / 2,
              padding: 0,
               borderBottomColor: theme.colors.gray, 
-              width: maxWidth, 
+              width: maxWidth || 0, 
               borderBottomWidth: StyleSheet.hairlineWidth * 10
 
               } }>
           <View style = { { 
             height: theme.sizes.radius * 1.2, 
             margin: 0,
-            width: totalStepCount, 
+            width: totalStepCount || 0, 
             borderBottomColor: theme.colors.primary,
             borderBottomWidth: StyleSheet.hairlineWidth * 10,
             position: "relative",
