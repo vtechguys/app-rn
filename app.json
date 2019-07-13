@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "thunderpod",
+    "slug": "thunderpod",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
@@ -31,12 +31,11 @@
           "reservedClientId": "com.googleusercontent.apps.521553643049-c628a93bu2eidorq1aij20ctlco16kt2"
         }
       }
-      
     },
     "android": {
       "package": "com.bacon.expo.googlesignin",
       "googleServicesFile": "./services/google-services.json"
-
-    }
+    },
+    "description": ""
   }
 }

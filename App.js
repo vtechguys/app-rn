@@ -32,9 +32,7 @@ const images = [
   require('./assets/images/illustration_2.png'),
   require('./assets/images/illustration_3.png'),
   // require('./assets/images/avatar.png'),
-
-  require('./assets/images/robot-dev.png'),
-  require('./assets/images/robot-prod.png'),
+  require("./assets/images/appAnimation.gif"),
   require('./assets/icon.png')
 ];
 async function loadResourcesAsync() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {  StyleSheet, AsyncStorage, ActivityIndicator, Image } from "react-native";
+import {  StyleSheet, AsyncStorage, ActivityIndicator, Image, View } from "react-native";
 
 import { Button, Block, Text,  } from "../UI";
 
@@ -25,6 +25,7 @@ class Init extends Component {
         const { navigation } = this.props;
 
         try{
+            // await AsyncStorage.clear();
             const token = await AsyncStorage.getItem(appConstants.USER_TOKEN);
             if(!token){
                 navigation.navigate("Welcome");
@@ -38,7 +39,15 @@ class Init extends Component {
         }
     }
     render() {
-        
+    //     return(<View style = { { width: 100, height: 150, borderColor: "black", borderBottomWidth: 5, borderTopWidth: 5, borderRightWidth: 5, borderLeftWidth: 5 } }>
+    //     <Image source={require("../assets/images/appAnimation.gif")} width="100%" height="100%" style={{width: "100%", height: "100%"}}/>
+  
+    //   </View>);
+
+
+
+
+
         return (
             <Block center middle padding = { [ 0, 0 , 60 ] } flex={1}>
                 <Image source = { require("../assets/icon.png") } style={styles.icon}/>

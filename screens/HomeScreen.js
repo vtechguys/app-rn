@@ -5,93 +5,189 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
-  Button
+  Button,
+  AsyncStorage,
+  Dimensions,
+
 } from 'react-native';
+
+import { Block, Text, Card, Divider } from "../UI";
+const {width, height } = Dimensions.get("window");
 
 import { MonoText } from '../components/StyledText';
 
-export default function HomeScreen(props) {
-  return <View>
-    <Button title="insideScreen" onPress={()=>props.navigation.navigate("InnerScreen")}></Button>
-  </View>
-  // return (
-  //   <View style={styles.container}>
-  //     <ScrollView
-  //       style={styles.container}
-  //       contentContainerStyle={styles.contentContainer}>
-  //       <View style={styles.welcomeContainer}>
-  //         <Image
-  //           source={
-  //             __DEV__
-  //               ? require('../assets/images/robot-dev.png')
-  //               : require('../assets/images/robot-prod.png')
-  //           }
-  //           style={styles.welcomeImage}
-  //         />
-  //       </View>
 
-  //       <View style={styles.getStartedContainer}>
-  //         <DevelopmentModeNotice />
+import { appConstants, theme } from "../constants";
 
-  //         <Text style={styles.getStartedText}>Get started by opening</Text>
+import { Pedometer } from 'expo-sensors';
 
-  //         <View
-  //           style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-  //           <MonoText>screens/HomeScreen.js</MonoText>
-  //         </View>
+import Expo from "expo";
 
-  //         <Text style={styles.getStartedText}>
-  //           Change this text and your app will automatically reload.
-  //         </Text>
-  //       </View>
 
-  //       <View style={styles.helpContainer}>
-  //         <TouchableOpacity onPress={handleHelpPress} style={styles.helpLink}>
-  //           <Text style={styles.helpLinkText}>
-  //             Help, it didn’t automatically reload!
-  //           </Text>
-  //         </TouchableOpacity>
-  //       </View>
-  //     </ScrollView>
+class Step extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      isPedometerAvailable: "checking",
+      pastStepCount: 0,
+      currentStepCount: 0,
+      totalStepCount: 0,
+      levelWidth: 0,
 
-  //     <View style={styles.tabBarInfoContainer}>
-  //       <Text style={styles.tabBarInfoText}>
-  //         This is a tab bar. You can edit it in:
-  //       </Text>
+    };
+  }
+  componentDidMount= async()=>{
+    this._subscribe();
+    const stepCount = await AsyncStorage.getItem("STEP_COUNT");
 
-  //       <View
-  //         style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-  //         <MonoText style={styles.codeHighlightText}>
-  //           navigation/MainTabNavigator.js
-  //         </MonoText>
-  //       </View>
-  //     </View>
-  //   </View>
-  // );
+  }
 }
-// HomeScreen.navigationOptions = {
 
-//   tabBarLabel: 'Home',
-//   tabBarIcon: ({ focused }) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={
-//         Platform.OS === 'ios'
-//           ? `ios-information-circle${focused ? '' : '-outline'}`
-//           : 'md-information-circle'
-//       }
-//     />
-//     // <Icon.Ionicons
-//     //   style={{  }}
-//     //   onPress={() => navigation.openDrawer()}
-//     //   name="md-contact"
-//     //   size={ theme.sizes.base  }
-//     // />
-//   ),
-// };
+
+
+
+
+export default class HomeScreen extends React.Component {
+
+  state = {
+    isPedometerAvailable: "checking",
+    pastStepCount: 0,
+    currentStepCount: 0,
+    totalStepCount: 0,
+    levelWidth: 0,
+    maxWidth: 300
+  };
+
+  componentDidMount = async () => {
+    this._subscribe();
+    const pastStepCount = await AsyncStorage.getItem("TOTAL_STEPS");
+    if (pastStepCount > 0) {
+      this.setState({
+        pastStepCount,
+        totalStepCount: pastStepCount
+      })
+    }
+  }
+
+  componentWillUnmount (){
+    this._unsubscribe();
+   
+  }
+
+  _subscribe = async () => {
+    this._subscription = Pedometer.watchStepCount(result => {
+      this.setState(prevState=>{
+        console.log("_subscribe",result, this.state);
+        return {
+          currentStepCount: result.steps,
+          totalStepCount: result.steps
+
+        };
+      });
+      AsyncStorage.setItem("TOTAL_STEPS", result.steps.toString());
+    });
+
+    Pedometer.isAvailableAsync().then(
+      result => {
+        this.setState({
+          isPedometerAvailable: String(result),
+
+        });
+      },
+      error => {
+        this.setState({
+          isPedometerAvailable: "Could not get isPedometerAvailable: " + error
+        });
+      }
+    );
+
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - 1);
+    Pedometer.getStepCountAsync(start, end).then(
+      result => {
+        console.log("step",result, this.state);
+        this.setState(prevState => { 
+          return {
+            totalStepCount: result.steps,
+            // levelWidth: result.steps
+          };
+          
+        });
+      AsyncStorage.setItem("TOTAL_STEPS", result.steps.toString());
+      },
+      error => {
+        this.setState({
+          pastStepCount: "Could not get stepCount: " + error
+        });
+      }
+    );
+  };
+
+  _unsubscribe = () => {
+    this._subscription && this._subscription.remove();
+    this._subscription = null;
+  };
+
+  render() {
+    let { maxWidth,levelWidth, totalStepCount } = this.state;
+    let pedometerAvailableJSX = (
+      <>
+        {/* <Text primary body bold>Past Step {this.state.pastStepCount}</Text> */}
+        {/* <Text primary body bold>Current Step {this.state.currentStepCount}</Text> */}
+        <View style = { { height: theme.sizes.radius,
+             margin: theme.sizes.base / 2,
+             padding: 0,
+              borderBottomColor: theme.colors.gray, 
+              width: maxWidth, 
+              borderBottomWidth: StyleSheet.hairlineWidth * 10
+
+              } }>
+          <View style = { { 
+            height: theme.sizes.radius * 1.2, 
+            margin: 0,
+            width: totalStepCount, 
+            borderBottomColor: theme.colors.primary,
+            borderBottomWidth: StyleSheet.hairlineWidth * 10,
+            position: "relative",
+            top: - 1,
+            left: 0,
+            zIndex: 100
+            // elevation: 2
+ 
+            } }/>
+        </View>
+        <Card center middle shadow style={styles.card}>
+          {/* <Text medium height={20}></Text> */}
+          <Text primary h1 bold >{this.state.totalStepCount}</Text>
+        </Card>
+      </>
+    );
+    let noPedometerAvialableJSX = <Text primary h2 bold>No pedoemter avialabel</Text>;
+    return (
+      <Block center middle flex={1} column>
+        <Block center style={{ backgroundColor: "black", width: "60%", height: "70%", borderWidth: 5, borderColor: "black"   }}>
+          <Image source={require("../assets/images/appAnimation.gif")} style={{ width: "100%", height: "100%" }} />
+        </Block>
+        <Block center style={{ width: "100%", height: "30%",  borderWidth: 5, borderColor: "black"  }}>
+          {
+            this.state.isPedometerAvailable
+              ?
+              pedometerAvailableJSX
+              :
+              noPedometerAvialableJSX
+
+          }
+        </Block>
+      </Block>
+    );
+  }
+
+}
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -179,4 +275,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+
+
+
+  container: {
+    flex: 1,
+    marginTop: 15,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+
+
+
+
+
+
+
+
+  card:{
+    // this should be dynamic based on screen width
+    minWidth: (width - (theme.sizes.padding * 2.4) - theme.sizes.base) / 2,
+    maxWidth: (width - (theme.sizes.padding * 2.4) - theme.sizes.base) / 2,
+    maxHeight: (width - (theme.sizes.padding * 2.4) - theme.sizes.base) / 2,
+    borderRadius:  (width - (theme.sizes.padding * 2.4) - theme.sizes.base) / 4
+  }
 });

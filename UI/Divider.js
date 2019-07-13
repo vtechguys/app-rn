@@ -6,7 +6,7 @@ import { theme } from '../constants';
 
 export default function Divider(props){
   
-    const { color, style, ...extraProps } = props;
+    const { color, style, children,  ...extraProps } = props;
     const dividerStyles = [
       styles.divider,
       style,
@@ -17,7 +17,9 @@ export default function Divider(props){
         // color={color || theme.colors.gray2}
         style={dividerStyles}
         {...extraProps}
-      />
+      >
+        { children }
+      </View>
     )
   
 }

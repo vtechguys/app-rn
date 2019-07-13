@@ -6,7 +6,7 @@ import GoogleSignInButton from "./GoogleSignInButton";
 import Divider from "./Divider";
 import Switch from "./Switch";
 import TabBarIcon from "./TabBarIcon";
-;
+import Card from "./Card";
 export {
     Block,
     Text, 
@@ -15,5 +15,6 @@ export {
     GoogleSignInButton,
     Divider,
     Switch,
-    TabBarIcon
+    TabBarIcon,
+    Card
 };
