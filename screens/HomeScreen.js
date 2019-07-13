@@ -26,30 +26,16 @@ import { Pedometer } from 'expo-sensors';
 import Expo from "expo";
 
 
-class Step extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      isPedometerAvailable: "checking",
-      pastStepCount: 0,
-      currentStepCount: 0,
-      totalStepCount: 0,
-      levelWidth: 0,
-
-    };
-  }
-  componentDidMount= async()=>{
-    this._subscribe();
-    const stepCount = await AsyncStorage.getItem("STEP_COUNT");
-
-  }
-}
 
 
 
 
 
-export default class HomeScreen extends React.Component {
+
+
+
+
+class Steps extends React.Component {
 
   state = {
     isPedometerAvailable: "checking",
@@ -167,17 +153,57 @@ export default class HomeScreen extends React.Component {
     );
     let noPedometerAvialableJSX = <Text primary h2 bold>No pedoemter avialabel</Text>;
     return (
-      <Block center middle flex={1} column>
-        <Block center style={{ backgroundColor: "black", width: "60%", height: "70%", borderWidth: 5, borderColor: "black"   }}>
-          <Image source={require("../assets/images/appAnimation.gif")} style={{ width: "100%", height: "100%" }} />
-        </Block>
-        <Block center style={{ width: "100%", height: "30%",  borderWidth: 5, borderColor: "black"  }}>
+        
+        <>
           {
             this.state.isPedometerAvailable
               ?
               pedometerAvailableJSX
               :
               noPedometerAvialableJSX
+
+          }
+        </>
+     
+    );
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export default class HomeScreen extends React.Component {
+
+  
+
+  render() {
+  
+    return (
+      <Block center middle flex={1} column>
+        <Block center style={{ backgroundColor: "black", width: "60%", height: "70%", borderWidth: 5, borderColor: "black"   }}>
+          <Image source={require("../assets/images/appAnimation.gif")} style={{ width: "100%", height: "100%" }} />
+        </Block>
+        <Block center style={{ width: "100%", height: "30%",  borderWidth: 5, borderColor: "black"  }}>
+          {
+            <Steps/>
 
           }
         </Block>
