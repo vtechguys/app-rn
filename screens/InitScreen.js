@@ -25,7 +25,7 @@ class Init extends Component {
         const { navigation } = this.props;
 
         try{
-            // await AsyncStorage.clear();
+            await AsyncStorage.clear();
             const token = await AsyncStorage.getItem(appConstants.USER_TOKEN);
             if(!token){
                 navigation.navigate("Welcome");
