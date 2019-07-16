@@ -3,7 +3,7 @@ import {
 } from "react-navigation";
 import { Dimensions } from "react-native";
 import DashboardStackNavigator from "./AppDrawerStackNavigator";
-import DrawerScreen from "../screens/SettingsScreen";
+import DrawerScreen from "../screens/DrawerScreen";
 
 
 const { width } = Dimensions.get("window");

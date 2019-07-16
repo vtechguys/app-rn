@@ -4,6 +4,16 @@ import {  StyleSheet, AsyncStorage, ActivityIndicator, Image, View } from "react
 import { Button, Block, Text,  } from "../UI";
 
 import { theme, appConstants } from "../constants";
+// import * as Permissions from 'expo-permissions';
+// import { Camera } from 'expo-camera';
+
+
+
+
+import { connect } from "react-redux";
+
+
+
 
 
 
@@ -17,6 +27,8 @@ class Init extends Component {
         super(props);
         this.state = {
             showTerms: false,
+            // hasCameraPermission: null,
+            // type: Camera.Constants.Type.back,
         };
     }
 
@@ -25,7 +37,10 @@ class Init extends Component {
         const { navigation } = this.props;
 
         try{
-            await AsyncStorage.clear();
+            // await AsyncStorage.clear();
+                // const { status } = await Permissions.askAsync(Permissions.CAMERA);
+                // this.setState({ hasCameraPermission: status === 'granted' });
+             
             const token = await AsyncStorage.getItem(appConstants.USER_TOKEN);
             if(!token){
                 navigation.navigate("Welcome");
@@ -56,9 +71,18 @@ class Init extends Component {
     }
 
 }
+function mapStateToProps(){
+    return {
 
+    };
+}
+function dispatchToProps(){
+    return {
+        signIn
+    };
+}
 
-export default Init;
+export default connect()(Init);
 
 
 const styles = StyleSheet.create({

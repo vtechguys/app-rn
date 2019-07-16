@@ -6,7 +6,7 @@ import { theme } from "../constants";
 
 /* css design arrtibutes margin*/
 function marginDesign(margin) {
-    let marginObj = null;
+    let marginObj = {};
     if (typeof margin === "number") {
         marginObj = {
             marginTop: margin,
@@ -65,7 +65,7 @@ function marginDesign(margin) {
 }
 /* css design arrtibutes padding */
 function paddingDesign(padding) {
-    let paddingObj = null;
+    let paddingObj = {};
     if (typeof padding === 'number') {
         paddingObj = {
             paddingTop: padding,
