@@ -26,11 +26,11 @@ var firebaseConfig = {
 };
 import { appConstants } from "../constants";
 
-import firebase from "firebase";
+// import firebase from "firebase";
 
 
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 
 
 
