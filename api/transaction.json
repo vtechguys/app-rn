@@ -1,8 +1,0 @@
-{
-    "transactions":[
-        {"coins":50,"score":1,"timestamp":"Sun Jul 14 2019", "type": "credit"},
-        {"coins":50,"score":1,"timestamp":"Mon Jul 15 2019", "type": "credit"},
-        {"coins":50,"score":1,"timestamp":"Tue Jul 16 2019", "type": "credit"},
-        {"coins":0,"score":-1,"timestamp":"Wed Jul 17 2019", "type": "debit"}
-    ]
-}
